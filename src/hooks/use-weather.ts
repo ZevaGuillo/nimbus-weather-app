@@ -1,4 +1,3 @@
-"use client"
 
 import { fetchPlaces } from "@/apis/mapboxAPI";
 import { fetchWeather } from "@/apis/openweathermapApi";
