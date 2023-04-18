@@ -23,7 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html
       lang="en"
       className={cn(
-        "bg-slate-50 font-sans text-slate-900 antialiased",
+        "font-sans bg-dark text-slate-900 antialiased",
         fontSans.variable
       )}>
       <body className="min-h-screen">

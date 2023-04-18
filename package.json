@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.3",
     "@tanstack/react-query": "^4.29.3",
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",

@@ -15,6 +15,10 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        'dark': '#090D26',
+        'light': '#EBEFF2',
+      },
       fontFamily: {
         sans: ["var(--font-inter)", ...fontFamily.sans],
       },
@@ -35,6 +39,7 @@ module.exports = {
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
+    // require("tailwindcss-animate"),
+    require('@tailwindcss/forms'),
   ],
 }
