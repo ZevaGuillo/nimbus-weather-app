@@ -1,6 +1,15 @@
-import React from "react";
+import { useWeather } from "@/hooks/useWeather";
+import { useWeatherStore } from "@/store/weatherStore";
+import React, { useContext } from "react";
 
 const Weather = () => {
+
+  const sate = useWeatherStore()
+
+  console.log(sate);
+  
+  
+
   return (
     <div className="absolute flex flex-col left-0 top-[45%] lg:top-[calc(12.5rem-3.7rem)] w-32  rounded-e-[2.5rem] h-40 lg:h-48 bg-indigo-400 text-light">
         
