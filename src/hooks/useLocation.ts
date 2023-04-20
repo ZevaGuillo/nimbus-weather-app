@@ -20,9 +20,15 @@ export const useLocation = () => {
 
   useEffect(() => {
     if (!lat && !lon) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setLocation(position.coords.latitude, position.coords.longitude);
-      });
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          setLocation(position.coords.latitude, position.coords.longitude);
+        }, 
+        function (error) {
+          // paris added by default
+          setLocation(48.85341, 2.3488);
+        }
+      );
     }
   }, []);
 

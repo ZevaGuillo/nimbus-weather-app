@@ -7,7 +7,7 @@ import { fetchImagePlace } from "@/apis/unsplashApi";
 
 export const useWeather = () => {
     const { lat, lon, place, setWeather, setImage } = useWeatherStore()
-    const location = useLocation()
+    const locationQuery = useLocation()
     const weatherQuery = useQuery(
         ['weather', lat, lon],
         () => fetchWeather(lat, lon),
@@ -17,7 +17,7 @@ export const useWeather = () => {
         }
     );
 
-    const ImageQuery = useQuery(
+    const imageQuery = useQuery(
         ['imageW', place.name],
         () => fetchImagePlace(place.name),
         {
@@ -27,5 +27,9 @@ export const useWeather = () => {
     );
 
 
-    return {}
+    return {
+        locationQuery,
+        weatherQuery,
+        imageQuery,
+    }
 };
