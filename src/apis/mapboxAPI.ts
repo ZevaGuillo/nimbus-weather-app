@@ -9,18 +9,19 @@ export const mapboxAPI: AxiosInstance = axios.create({
     },
 })
 
-export const fetchPlaces = async (place: string) => {
+export const fetchPlaces = async (place: string): Promise<searchSuggestion[] | undefined> => {
 
     try {
         const response = await mapboxAPI.get<any>(`/${place}.json`);
 
+        console.log(response);
+        
         return response.data.features.map((lugar: any) => ({
             id: lugar.id,
             fullname: lugar.place_name,
-            name: lugar.place_name.split(/[ ,;.]/)[0],
             lng: lugar.center[0],
             lat: lugar.center[1],
-        }));
+        })) as searchSuggestion[];
     } catch (error) {
         console.log(error);
     }

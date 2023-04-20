@@ -70,25 +70,19 @@
   }
 }
 
-.dots-3 {
-  width: 60px;
-  aspect-ratio: 2;
-  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-  opacity: 0.2;
-  background: 
-    var(--_g) 0%   50%,
-    var(--_g) 50%  50%,
-    var(--_g) 100% 50%;
-  background-size: calc(100%/3) 50%;
-  animation: d3 1s infinite linear;
-}
-@keyframes d3 {
-    20%{background-position:0%   0%, 50%  50%,100%  50%}
-    40%{background-position:0% 100%, 50%   0%,100%  50%}
-    60%{background-position:0%  50%, 50% 100%,100%   0%}
-    80%{background-position:0%  50%, 50%  50%,100% 100%}
-}
 
+.pulsing-1 {
+  width:20px;
+  height:20px;
+  border-radius: 50%;
+  background:#000;
+  opacity: 0.2;
+  box-shadow: 0 0 0 0 #0004;
+  animation:pl1 1s infinite;
+}
+@keyframes pl1 {
+    100% {box-shadow: 0 0 0 30px #0000}
+}
  
 @layer base {
   * {
