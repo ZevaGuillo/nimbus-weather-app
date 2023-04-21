@@ -1,6 +1,5 @@
 import Place from "@/components/Place";
 import Weather from "@/components/Weather";
-import { Skeleton } from "@/components/ui/skeleton";
 import { useWeather } from "@/hooks/useWeather";
 
 
