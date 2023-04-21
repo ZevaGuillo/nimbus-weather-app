@@ -1,30 +1,46 @@
 import { fetchPlaces } from "@/apis/mapboxAPI";
 import { useQuery } from "@tanstack/react-query";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 import Loading from "./Loading";
 import { SearchIcon } from "lucide-react";
+import { useWeatherStore } from "@/store/weatherStore";
 
 const Search = () => {
-  const input = useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedTerm] = useDebounce(searchTerm, 500);
-
   const { isLoading, isError, data } = useQuery(["search", debouncedTerm], () =>
     fetchPlaces(debouncedTerm)
   );
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { setLocation } = useWeatherStore();
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
+
+  const handleOption = (place: searchSuggestion) => {
+    setLocation(place.lat, place.lon);
+  };
 
   return (
-    <div>
+    <div ref={containerRef}>
       <div className="flex items-center relative">
         <SearchIcon
           className="absolute left-3 opacity-30"
           size={20}
         />
-        ;
         <input
-          onBlur={() => setOpen(false)}
           onFocus={() => setOpen(true)}
           value={searchTerm}
           onChange={event => setSearchTerm(event.target.value)}
@@ -46,16 +62,16 @@ const Search = () => {
               {data &&
                 data.map(item => (
                   <li
-                    className="h-[3rem] px-4 flex items-center border-b-[.5px] border-slate-800 border-opacity-10 hover:bg-gray-100"
-                    key={item.id}>
+                    className="h-[3rem] overflow-ellipsis overflow-hidden whitespace-nowrap px-4 flex items-center border-b-[.5px] border-slate-800 border-opacity-10 hover:bg-gray-100"
+                    key={item.id}
+                    onClick={() => handleOption(item)}>
                     {item.fullname}
                   </li>
                 ))}
             </ul>
           )}
         </div>
-      )}{" "}
-      *
+      )}
     </div>
   );
 };

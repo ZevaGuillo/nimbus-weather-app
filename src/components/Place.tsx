@@ -1,38 +1,41 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Search from "./Search";
 import { useWeatherStore } from "@/store/weatherStore";
 import Image from "next/image";
 import { UseQueryResult } from "@tanstack/react-query";
-import { Skeleton } from "@/components/ui/skeleton"
-
+import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 interface PlaceProps {
-  locationQuery: UseQueryResult<Location, unknown>,
-  imageQuery: UseQueryResult<Image, unknown>
+  locationQuery: UseQueryResult<Location, unknown>;
+  imageQuery: UseQueryResult<Image, unknown>;
 }
 
-const Place: FC<PlaceProps> = ({imageQuery, locationQuery}) => {
+const Place: FC<PlaceProps> = ({ imageQuery, locationQuery }) => {
   const { place, image } = useWeatherStore();
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  if (locationQuery.isLoading || imageQuery.isLoading) {
-    return <Skeleton className="w-full h-[25rem] rounded-[2.5rem] bg-opacity-50 bg-slate-700" />
+  if (locationQuery.isLoading || imageQuery.isFetching) {
+    return (
+      <Skeleton className="w-full h-[25rem] rounded-[2.5rem] bg-opacity-50 bg-slate-700" />
+    );
   }
 
   if (locationQuery.isError || imageQuery.isError) {
-    return <p>Error!</p>
+    return <p>Error!</p>;
   }
-  
+
   return (
     <div className="relative overflow-hidden w-full h-[25rem] rounded-[2.5rem]">
       <div className="sticky w-full h-full">
+        <Skeleton className={cn("w-full h-[25rem] rounded-[2.5rem] bg-opacity-50 bg-slate-700",{hidden:imageLoaded})} />
         {image && (
           <Image
-            src={image.urls.full}
+            src={image.urls.regular}
             alt="algo"
             fill
-            blurDataURL={"data:" + image.blur_hash}
-            placeholder="blur"
             priority
+            onLoad={() => setImageLoaded(true)}
             style={{ objectFit: "cover" }}
           />
         )}

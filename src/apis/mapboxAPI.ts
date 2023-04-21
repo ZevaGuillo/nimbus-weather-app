@@ -19,7 +19,7 @@ export const fetchPlaces = async (place: string): Promise<searchSuggestion[] | u
         return response.data.features.map((lugar: any) => ({
             id: lugar.id,
             fullname: lugar.place_name,
-            lng: lugar.center[0],
+            lon: lugar.center[0],
             lat: lugar.center[1],
         })) as searchSuggestion[];
     } catch (error) {
