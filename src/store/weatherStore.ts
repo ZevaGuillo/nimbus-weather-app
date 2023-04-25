@@ -9,5 +9,6 @@ export const useWeatherStore = create<WeatherState>((set)=>({
     setLocation: (lat , lon) => set({lat, lon}),
     setPlace: (place) => set({place}),
     setWeather: (weather) => set({weather}),
-    setImage: (image) => set({image})
+    setImage: (image) => set({image}),
+    setNameImageOption: (image_name) => set({image_name})
 }))

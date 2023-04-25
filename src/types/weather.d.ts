@@ -4,10 +4,12 @@ interface WeatherState {
     place: Location,
     weather: WeatherResponse,
     image: Image,
+    image_name?:  string;
     setLocation: (lat: number, log: number) => void,
     setPlace: (place: Location) => void,
     setWeather: (weather: WeatherResponse) => void,
     setImage: (weather: Image) => void
+    setNameImageOption: (image_name:string) => void
 }
 
 interface WeatherResponse {

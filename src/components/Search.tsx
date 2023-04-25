@@ -34,10 +34,10 @@ const Search = () => {
   };
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="z-50">
       <div className="flex items-center relative">
         <SearchIcon
-          className="absolute left-3 opacity-30"
+          className="absolute left-2 opacity-30"
           size={20}
         />
         <input

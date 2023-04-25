@@ -1,5 +1,4 @@
 interface Image {
-    blur_hash: string;
     urls:      Urls;
 }
 

@@ -6,26 +6,31 @@ import { useEffect } from "react";
 import { fetchImagePlace } from "@/apis/unsplashApi";
 
 export const useWeather = () => {
-    const { lat, lon, place, setWeather, setImage } = useWeatherStore()
+    const { lat, lon, place, setWeather, setImage, image_name, setNameImageOption } = useWeatherStore()
     const locationQuery = useLocation()
     const weatherQuery = useQuery(
         ['weather', lat, lon],
         () => fetchWeather(lat, lon),
         {
             enabled: !!lat && !!lon,
-            onSuccess: setWeather
+            onSuccess: (data) => {
+                setWeather(data as WeatherResponse)
+                setNameImageOption('')
+            }
         }
     );
 
     const imageQuery = useQuery(
-        ['imageW', place.name],
-        () => fetchImagePlace(place.name),
+        ['imageW', place.name, image_name],
+        () => fetchImagePlace(image_name || place.name),
         {
             enabled: !!place.name,
-            onSuccess: setImage
+            onSuccess: setImage,
+            onError: async(error) => {
+                setNameImageOption('weather wallpaper')
+            },  
         }
     );
-
 
     return {
         locationQuery,

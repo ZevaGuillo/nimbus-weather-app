@@ -10,17 +10,19 @@ export const unsplashAPI: AxiosInstance = axios.create({
 
 
 export const fetchImagePlace = async (place: string): Promise<Image | undefined> => {
-
+    console.log('fettch image', place);
+    
     try {
         const response = await unsplashAPI.get<any>('',{params: {query: place}});
         const data = response.data;
+        console.log(data);
         
+
         return {
-          'blur_hash': data.results[0].blur_hash,
-          'urls': data.results[0].urls
+          'urls': data.results[0].urls 
         } as Image;
         
     } catch (error) {
-        console.log(error);
+        throw new Error('something was wrong')
     }
 };
