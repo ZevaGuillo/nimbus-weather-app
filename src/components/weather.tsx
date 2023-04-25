@@ -5,12 +5,12 @@ import Loading from "./Loading";
 import Icon from "./Icon";
 
 interface WeatherProps {
-  weatherQuery: UseQueryResult<WeatherResponse, unknown>;
+  weatherQuery: UseQueryResult<WeatherResponse | undefined, unknown>;
 }
 
 const Weather: FC<WeatherProps> = ({ weatherQuery }) => {
   const {
-    weather: { weather, main },
+    weather: { current},
   } = useWeatherStore();
 
   if (weatherQuery.isError) {
@@ -30,12 +30,12 @@ const Weather: FC<WeatherProps> = ({ weatherQuery }) => {
         {weatherQuery.isFetching ? (
           <Loading />
         ) : (
-          weather && (
+          current && (
             <div className="flex items-center flex-col">
               <div className="text-3xl text-[2.5rem]">
-                <Icon weatherId={weather[0].icon} />
+                <Icon weatherId={current.weather[0].icon} />
               </div>
-              {weather[0].main}
+              {current.weather[0].main}
             </div>
           )
         )}
@@ -47,9 +47,9 @@ const Weather: FC<WeatherProps> = ({ weatherQuery }) => {
             <Loading />
           ) : (
             <>
-              {main && (
+              {current && (
                 <>
-                  {Math.floor(main.temp)}
+                  {Math.round(current.temp)}
                   <span className="text-sm">°C</span>
                 </>
               )}

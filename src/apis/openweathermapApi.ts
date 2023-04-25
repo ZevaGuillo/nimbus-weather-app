@@ -12,7 +12,7 @@ export const weatherAPI: AxiosInstance = axios.create({
 export const fetchWeather = async (lat: number, lon: number): Promise<WeatherResponse | undefined> => {
 
   try {
-    const { data } = await weatherAPI.get<WeatherResponse>(`/data/2.5/weather/?lat=${lat}&lon=${lon}`);
+    const { data } = await weatherAPI.get<WeatherResponse>(`/data/2.5/onecall?lat=${lat}&lon=${lon}`);
 
     return data
   } catch (error) {

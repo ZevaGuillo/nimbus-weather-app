@@ -4,66 +4,96 @@ interface WeatherState {
     place: Location,
     weather: WeatherResponse,
     image: Image,
-    image_name?:  string;
+    image_name?: string;
     setLocation: (lat: number, log: number) => void,
     setPlace: (place: Location) => void,
     setWeather: (weather: WeatherResponse) => void,
     setImage: (weather: Image) => void
-    setNameImageOption: (image_name:string) => void
+    setNameImageOption: (image_name: string) => void
 }
-
 interface WeatherResponse {
-    weather: Weather[];
-    base: string;
-    main: Main;
-    visibility: number;
-    wind: Wind;
-    rain: Rain;
-    clouds: Clouds;
+    lat: number;
+    lon: number;
+    timezone: string;
+    timezone_offset: number;
+    current: Current;
+    hourly: Current[];
+    daily: Daily[];
+}
+interface Current {
     dt: number;
-    sys: Sys;
-    timezone: number;
-    id: number;
-    name: string;
-    cod: number;
-}
-
-interface Clouds {
-    all: number;
-}
-
-interface Main {
+    sunrise?: number;
+    sunset?: number;
     temp: number;
     feels_like: number;
-    temp_min: number;
-    temp_max: number;
     pressure: number;
     humidity: number;
-    sea_level: number;
-    grnd_level: number;
+    dew_point: number;
+    uvi: number;
+    clouds: number;
+    visibility: number;
+    wind_speed: number;
+    wind_deg: number;
+    weather: Weather[];
+    wind_gust?: number;
+    pop?: number;
+    rain?: Rain;
 }
-
 interface Rain {
     "1h": number;
 }
-
-interface Sys {
-    type: number;
-    id: number;
-    country: string;
-    sunrise: number;
-    sunset: number;
-}
-
 interface Weather {
     id: number;
-    main: string;
-    description: string;
+    main: Main;
+    description: Description;
     icon: string;
 }
+enum Description {
+    AlgoDeNubes = "algo de nubes",
+    LluviaDeGranIntensidad = "lluvia de gran intensidad",
+    LluviaLigera = "lluvia ligera",
+    LluviaModerada = "lluvia moderada",
+    MuyNuboso = "muy nuboso",
+    Nubes = "nubes",
+    NubesDispersas = "nubes dispersas",
+}
 
-interface Wind {
-    speed: number;
-    deg: number;
-    gust: number;
+enum Main {
+    Clouds = "Clouds",
+    Rain = "Rain",
+}
+interface Daily {
+    dt: number;
+    sunrise: number;
+    sunset: number;
+    moonrise: number;
+    moonset: number;
+    moon_phase: number;
+    temp: Temp;
+    feels_like: FeelsLike;
+    pressure: number;
+    humidity: number;
+    dew_point: number;
+    wind_speed: number;
+    wind_deg: number;
+    wind_gust: number;
+    weather: Weather[];
+    clouds: number;
+    pop: number;
+    rain: number;
+    uvi: number;
+}
+interface FeelsLike {
+    day: number;
+    night: number;
+    eve: number;
+    morn: number;
+}
+interface Temp {
+    day: number;
+    min: number;
+    max: number;
+    night: number;
+    eve: number;
+    morn: number;
 }

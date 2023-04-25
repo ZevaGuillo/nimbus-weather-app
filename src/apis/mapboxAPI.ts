@@ -13,8 +13,6 @@ export const fetchPlaces = async (place: string): Promise<searchSuggestion[] | u
 
     try {
         const response = await mapboxAPI.get<any>(`/${place}.json`);
-
-        console.log(response);
         
         return response.data.features.map((lugar: any) => ({
             id: lugar.id,

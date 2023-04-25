@@ -26,11 +26,8 @@ const Place: FC<PlaceProps> = ({ imageQuery, locationQuery }) => {
     return <p>Error!</p>;
   }
 
-  console.log(place, image);
-  
-
   return (
-    <div className="relative overflow-hidden w-full h-[23rem] rounded-[2.5rem]">
+    <div className=" relative overflow-hidden w-full h-[20rem] rounded-[2.5rem]">
       <div className="sticky w-full h-full">
         <Skeleton className={cn("w-full h-[25rem] rounded-[2.5rem] bg-opacity-50 bg-slate-700",{hidden:imageLoaded})} />
         {image && (
