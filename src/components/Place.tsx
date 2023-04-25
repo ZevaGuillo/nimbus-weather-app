@@ -18,7 +18,7 @@ const Place: FC<PlaceProps> = ({ imageQuery, locationQuery }) => {
 
   if (locationQuery.isLoading || imageQuery.isFetching) {
     return (
-      <Skeleton className="w-full h-[25rem] rounded-[2.5rem] bg-opacity-50 bg-slate-700" />
+      <Skeleton className="w-full h-[20rem] rounded-[2.5rem] bg-opacity-50 bg-slate-700" />
     );
   }
 
