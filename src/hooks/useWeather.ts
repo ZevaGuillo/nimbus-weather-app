@@ -27,7 +27,7 @@ export const useWeather = () => {
             onSuccess: setImage,
             refetchOnWindowFocus: false,
             onError: (error) => {
-                setNameImageOption( weather.weather[0].main ||'weather wallpaper cloud')
+                setNameImageOption( weather.current.weather[0].main ||'weather wallpaper cloud')
             },  
         }
     );

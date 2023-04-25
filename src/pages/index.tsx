@@ -1,6 +1,6 @@
 import Forecast from "@/components/Forecast";
 import Place from "@/components/Place";
-import Weather from "@/components/weather";
+import Weather from "@/components/Weather";
 import { useWeather } from "@/hooks/useWeather";
 import { useWeatherStore } from "@/store/weatherStore";
 
