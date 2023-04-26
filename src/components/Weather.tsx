@@ -18,7 +18,7 @@ const Weather: FC<WeatherProps> = ({ weatherQuery }) => {
   }
 
   return (
-    <div className="absolute z-10 flex flex-col left-0 top-[25%] lg:top-[calc(12.5rem-4.5rem)] w-32 shadow-2xl rounded-e-[2.5rem] h-40 lg:h-48 bg-indigo-400 text-light">
+    <div className="absolute z-10 flex flex-col left-0 top-[25%] lg:top-[calc(12.5rem-6rem)] w-32 shadow-2xl rounded-e-[2.5rem] h-40 lg:h-48 bg-indigo-400 text-light">
       <span className="absolute -top-8 w-4 md:w-8 h-8 bg-indigo-600">
         <div className="w-full h-full bg-dark rounded-bl-3xl" />
       </span>

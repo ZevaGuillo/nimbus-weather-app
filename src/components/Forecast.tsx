@@ -7,8 +7,6 @@ const Forecast = () => {
     weather: { daily },
   } = useWeatherStore();
 
-  console.log(daily);
-
   return (
     <div className=" flex flex-col">
       <h3 className="text-light text-2xl py-5 font-bold">

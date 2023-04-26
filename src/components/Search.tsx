@@ -50,7 +50,7 @@ const Search = () => {
         />
       </div>
       {open && data && data.length > 0 && (
-        <div className="ml-1 mt-1 z-50 w-full lg:w-72 rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2">
+        <div className="ml-1 mt-1 z-50 w-full lg:w-72 rounded-md border bg-light text-popover-foreground shadow-md outline-none animate-in data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2">
           {isLoading ? (
             <div className="h-[5rem] grid place-content-center">
               <Loading />

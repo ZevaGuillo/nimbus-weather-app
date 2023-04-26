@@ -10,7 +10,7 @@ export const unsplashAPI: AxiosInstance = axios.create({
 
 
 export const fetchImagePlace = async (place: string): Promise<Image | undefined> => {
-    console.log('fettch image', place);
+    
     
     try {
         const response = await unsplashAPI.get<any>('',{params: {query: place}});

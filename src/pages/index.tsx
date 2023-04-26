@@ -1,6 +1,7 @@
 import Forecast from "@/components/Forecast";
 import Place from "@/components/Place";
 import Weather from "@/components/Weather";
+import WeatherData from "@/components/WeatherData";
 import { useWeather } from "@/hooks/useWeather";
 import { useWeatherStore } from "@/store/weatherStore";
 
@@ -17,9 +18,9 @@ export default function Home() {
         imageQuery={imageQuery}
         locationQuery={locationQuery}
       />
-      <div className=" flex-1 flex w-full">
+      <div className=" flex-1 flex flex-col md:flex-row w-full">
         <Forecast />
-        <div className="flex-1">datos</div>
+        <WeatherData/>
         <div className="flex-1">historial</div>
       </div>
     </div>
