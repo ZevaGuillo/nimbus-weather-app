@@ -21,7 +21,7 @@ export default function Home() {
       <div className=" flex-1 flex flex-col md:flex-row w-full">
         <Forecast />
         <WeatherData/>
-        <div className="flex-1">historial</div>
+        <div className="w-1/4">historial</div>
       </div>
     </div>
   );
