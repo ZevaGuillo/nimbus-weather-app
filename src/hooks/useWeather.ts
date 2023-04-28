@@ -19,7 +19,7 @@ export const useWeather = () => {
                 setWeather(data as WeatherResponse)
                 setNameImageOptional('')
                 if(data){
-                    setPlace(data.lat, data.lon)
+                    setPlace(data.lat, data.lon, place.name)
                 }
             }
         }

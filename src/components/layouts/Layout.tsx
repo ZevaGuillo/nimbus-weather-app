@@ -22,15 +22,13 @@ export const Layout: FC<Props> = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
       </Head>
-      <div className="min-h-screen">
         <main
           className={cn(
-            "font-sans bg-dark text-slate-900 antialiased",
+            "font-sans min-h-screen bg-dark text-slate-900 antialiased",
             fontSans.variable
           )}>
           {children}
         </main>
-      </div>
     </>
   );
 };

@@ -10,9 +10,7 @@ import { useWeatherStore } from "@/store/weatherStore";
 export default function Home() {
   const { weather } = useWeatherStore();
   const { imageQuery, locationQuery, weatherQuery } = useWeather();
-  const {places} = useHistoryStore();
-
-  console.log(places);
+  const { places } = useHistoryStore();
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-5 lg:p-10">
@@ -22,9 +20,13 @@ export default function Home() {
         locationQuery={locationQuery}
       />
       <div className=" flex-1 flex flex-col md:flex-row w-full">
-        <Forecast />
-        <WeatherData/>
-        <History/>
+        {weather.current && (
+          <>
+            <Forecast />
+            <WeatherData />
+            <History />
+          </>
+        )}
       </div>
     </div>
   );

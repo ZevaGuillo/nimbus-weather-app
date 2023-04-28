@@ -42,7 +42,7 @@ const Weather: FC<WeatherProps> = ({ weatherQuery }) => {
       </div>
 
       <div className="flex-1 flex justify-center items-center">
-        <p className="flex text-3xl">
+        <div className="flex text-3xl">
           {weatherQuery.isFetching ? (
             <Loading />
           ) : (
@@ -55,7 +55,7 @@ const Weather: FC<WeatherProps> = ({ weatherQuery }) => {
               )}
             </>
           )}
-        </p>
+        </div>
       </div>
     </div>
   );
