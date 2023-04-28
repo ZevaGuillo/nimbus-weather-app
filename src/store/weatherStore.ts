@@ -10,5 +10,5 @@ export const useWeatherStore = create<WeatherState>((set)=>({
     setPlace: (place) => set({place}),
     setWeather: (weather) => set({weather}),
     setImage: (image) => set({image}),
-    setNameImageOption: (image_name) => set({image_name})
+    setNameImageOptional: (image_name) => set({image_name})
 }))

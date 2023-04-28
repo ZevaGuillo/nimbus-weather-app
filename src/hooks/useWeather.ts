@@ -1,11 +1,14 @@
 import { fetchWeather } from "@/apis/openweathermapApi";
 import { useQuery } from "@tanstack/react-query";
+
 import { useLocation } from "./useLocation";
 import { useWeatherStore } from "@/store/weatherStore";
 import { fetchImagePlace } from "@/apis/unsplashApi";
+import { useHistorialStore } from "@/store/historialStore";
 
 export const useWeather = () => {
-    const { lat, lon, place, setWeather, setImage, image_name, setNameImageOption, weather } = useWeatherStore()
+    const { lat, lon, place, setWeather, setImage, image_name, setNameImageOptional, weather } = useWeatherStore()
+    const {setPlace} = useHistorialStore()
     const locationQuery = useLocation()
     const weatherQuery = useQuery(
         ['weather', lat, lon],
@@ -14,7 +17,10 @@ export const useWeather = () => {
             enabled: !!lat && !!lon,
             onSuccess: (data) => {
                 setWeather(data as WeatherResponse)
-                setNameImageOption('')
+                setNameImageOptional('')
+                if(data){
+                    setPlace(data.lat, data.lon)
+                }
             }
         }
     );
@@ -27,10 +33,13 @@ export const useWeather = () => {
             onSuccess: setImage,
             refetchOnWindowFocus: false,
             onError: (error) => {
-                setNameImageOption( weather.current.weather[0].main ||'weather wallpaper cloud')
+                setNameImageOptional( weather.current.weather[0].main ||'weather wallpaper cloud')
             },  
         }
     );
+
+
+    
 
     return {
         locationQuery,
