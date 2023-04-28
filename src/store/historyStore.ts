@@ -11,10 +11,16 @@ export const useHistoryStore = create<HistoryState>()(
                 const exist = get().places.some(place => place.lat === lat && place.lon === lon);
                 
                 if(exist){
+                
                     return { places: [...get().places] }
                 }
 
-                return { places: [...get().places, {lat, lon, name}] }
+                let newPlaces = [...get().places, { lat, lon, name }];
+                if (newPlaces.length > 4) {
+                  newPlaces = newPlaces.slice(-4);
+                }
+
+                return { places: newPlaces }
             }),
         }),
         {
