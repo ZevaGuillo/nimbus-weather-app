@@ -1,15 +1,16 @@
 import Forecast from "@/components/Forecast";
+import History from "@/components/History";
 import Place from "@/components/Place";
 import Weather from "@/components/Weather";
 import WeatherData from "@/components/WeatherData";
 import { useWeather } from "@/hooks/useWeather";
-import { useHistorialStore } from "@/store/historialStore";
+import { useHistoryStore } from "@/store/historyStore";
 import { useWeatherStore } from "@/store/weatherStore";
 
 export default function Home() {
   const { weather } = useWeatherStore();
   const { imageQuery, locationQuery, weatherQuery } = useWeather();
-  const {places} = useHistorialStore();
+  const {places} = useHistoryStore();
 
   console.log(places);
 
@@ -23,7 +24,7 @@ export default function Home() {
       <div className=" flex-1 flex flex-col md:flex-row w-full">
         <Forecast />
         <WeatherData/>
-        <div className="w-1/4">historial</div>
+        <History/>
       </div>
     </div>
   );

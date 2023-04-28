@@ -4,11 +4,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "./useLocation";
 import { useWeatherStore } from "@/store/weatherStore";
 import { fetchImagePlace } from "@/apis/unsplashApi";
-import { useHistorialStore } from "@/store/historialStore";
+import { useHistoryStore } from "@/store/historyStore";
 
 export const useWeather = () => {
     const { lat, lon, place, setWeather, setImage, image_name, setNameImageOptional, weather } = useWeatherStore()
-    const {setPlace} = useHistorialStore()
+    const {setPlace} = useHistoryStore()
     const locationQuery = useLocation()
     const weatherQuery = useQuery(
         ['weather', lat, lon],

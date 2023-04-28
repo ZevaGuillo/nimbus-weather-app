@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 
-export const useHistorialStore = create<HistorialState>()(
+export const useHistoryStore = create<HistoryState>()(
     persist(
         (set, get) => ({
             places: [] as {lat: number, lon: number}[],
