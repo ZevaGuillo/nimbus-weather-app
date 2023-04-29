@@ -12,9 +12,9 @@ const Forecast = () => {
       <h3 className="text-light text-2xl py-5 font-bold">
         3 Days <span className="font-light">Forecast</span>
       </h3>
-      <div className="flex flex-col gap-3">
+      <div className="flex-1 flex flex-col gap-3">
         {daily && daily.slice(0,3).map(day => (
-          <div key={day.dt} className="bg-dark2 text-light flex justify-between rounded-3xl">
+          <div key={day.dt} className="flex-1 bg-dark2 text-light flex justify-between rounded-3xl">
             <div className="flex p-5 items-center text-[2rem] gap-2">
                 <Icon weatherId={day.weather[0].icon}/>
                 <div className="text-base">

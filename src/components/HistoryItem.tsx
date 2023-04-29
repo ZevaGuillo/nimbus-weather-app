@@ -18,7 +18,7 @@ const HistoryItem: FC<ItemProps> = ({ place }) => {
   const {setLocation} = useWeatherStore()
 
   return (
-    <section className="flex-1 p-2 self-stretch text-light font-bold bg-dark2 w-full min-h-[7rem] rounded-2xl flex transition-all hover:scale-105"
+    <section className="flex-1 text-light font-bold bg-dark2 w-full rounded-2xl flex transition-all hover:scale-105"
       onClick={()=>{
         setLocation(place.lat, place.lon)
       }}

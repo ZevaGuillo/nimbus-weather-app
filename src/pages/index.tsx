@@ -13,13 +13,13 @@ export default function Home() {
   const { places } = useHistoryStore();
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-5 lg:p-10">
+    <div className="flex flex-col items-center justify-between pt-5 px-5 lg:pt-10 lg:px-10">
       <Weather weatherQuery={weatherQuery} />
       <Place
         imageQuery={imageQuery}
         locationQuery={locationQuery}
       />
-      <div className=" flex-1 flex flex-col md:flex-row w-full">
+      <div className=" flex-1 flex flex-col md:flex-row w-full flex-wrap">
         {weather.current && (
           <>
             <Forecast />

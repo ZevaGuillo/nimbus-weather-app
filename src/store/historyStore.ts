@@ -5,17 +5,17 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 export const useHistoryStore = create<HistoryState>()(
     persist(
         (set, get) => ({
-            places: [] as {lat: number, lon: number, name: string}[],
-            setPlace: (lat, lon, name) => set(() => {
+            places: [] as {id:string, lat: number, lon: number, name: string}[],
+            setPlace: (id, lat, lon, name) => set(() => {
 
-                const exist = get().places.some(place => place.lat === lat && place.lon === lon);
+                const exist = get().places.some(place => place.id === id);
                 
                 if(exist){
                 
                     return { places: [...get().places] }
                 }
 
-                let newPlaces = [...get().places, { lat, lon, name }];
+                let newPlaces = [...get().places, { id, lat, lon, name }];
                 if (newPlaces.length > 4) {
                   newPlaces = newPlaces.slice(-4);
                 }

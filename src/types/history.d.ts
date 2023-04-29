@@ -1,4 +1,4 @@
-interface HistoryState{
-    places: {lat: number, lon: number, name: string}[],
-    setPlace: (lat: number, lon: number, name: string) => void
+interface HistoryState {
+    places: { id: string, lat: number, lon: number, name: string }[],
+    setPlace: (id: string, lat: number, lon: number, name: string) => void
 }

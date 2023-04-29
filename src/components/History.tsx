@@ -1,22 +1,38 @@
 import { useHistoryStore } from "@/store/historyStore";
 import HistoryItem from "./HistoryItem";
+import { useWeatherStore } from "@/store/weatherStore";
+import { useEffect, useState } from "react";
 
 const History = () => {
   const { places } = useHistoryStore();
+  const { id } = useWeatherStore();
+  const [history, setHistory] = useState(places);
+
+  useEffect(() => {
+    setHistory(places.filter(place => place.id !== id));
+  }, [id, places]);
 
   return (
-    <div className="py-3 flex flex-col w-full lg:w-[20rem] relative">
-      <h2 className="text-light text-2xl py-5 font-bold lg:hidden">History</h2>
+    <>
+      {history.length > 0 && (
+        <div className="flex flex-col w-full lg:w-[20rem] relative">
+          <h2 className="text-light text-2xl py-5 font-bold ">
+            History
+          </h2>
 
-      <div className=" p-2 h-[31rem] lg:h-[calc(100%+8rem)] w-full lg:w-[87%] lg:absolute lg:-top-32 flex flex-col justify-end gap-3 overflow-hidden">
-        {places.map(place => (
-          <HistoryItem
-            key={`${place.lat}${place.lon}`}
-            place={place}
-          />
-        ))}
-      </div>
-    </div>
+          <div className="h-full w-full flex flex-col gap-3">
+            {places
+              .filter(place => place.id !== id)
+              .map(place => (
+                <HistoryItem
+                  key={place.id}
+                  place={place}
+                />
+              ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

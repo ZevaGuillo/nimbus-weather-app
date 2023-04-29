@@ -5,21 +5,24 @@ import { useLocation } from "./useLocation";
 import { useWeatherStore } from "@/store/weatherStore";
 import { fetchImagePlace } from "@/apis/unsplashApi";
 import { useHistoryStore } from "@/store/historyStore";
+import { round } from "@/lib/utils";
 
 export const useWeather = () => {
     const { lat, lon, place, setWeather, setImage, image_name, setNameImageOptional, weather } = useWeatherStore()
-    const {setPlace} = useHistoryStore()
+    const { setPlace } = useHistoryStore()
     const locationQuery = useLocation()
     const weatherQuery = useQuery(
         ['weather', lat, lon],
         () => fetchWeather(lat, lon),
         {
+
             enabled: !!lat && !!lon,
             onSuccess: (data) => {
-                setWeather(data as WeatherResponse)
-                setNameImageOptional('')
-                if(data){
-                    setPlace(data.lat, data.lon, place.name)
+                let id = `${data?.timezone}${round(lat)}-${round(lon)}`
+                if (data) {
+                    setWeather(id, data as WeatherResponse)
+                    setNameImageOptional('')
+                    setPlace(id, data.lat, data.lon, place.name)
                 }
             }
         }
@@ -33,13 +36,13 @@ export const useWeather = () => {
             onSuccess: setImage,
             refetchOnWindowFocus: false,
             onError: (error) => {
-                setNameImageOptional( weather.current.weather[0].main ||'weather wallpaper cloud')
-            },  
+                setNameImageOptional(weather.current.weather[0].main || 'weather wallpaper cloud')
+            },
         }
     );
 
 
-    
+
 
     return {
         locationQuery,
