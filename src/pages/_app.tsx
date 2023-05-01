@@ -1,4 +1,5 @@
 
+import { Analytics } from "@/components/analytics";
 import { Layout } from "@/components/layouts";
 import QueryProvider from "@/components/QueryProvider";
 import "@/styles/globals.css";
@@ -12,6 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <Component {...pageProps} />
           </Layout>
       </QueryProvider>
+      <Analytics/>
     </>
   );
 }
