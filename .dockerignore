@@ -1,0 +1,13 @@
+Dockerfile
+.git
+node_modules/
+.vscode/
+.next/
+LEARN.md
+LICENSE
+.eslintrc.json
+.gitignore
+README.md
+Screenshot.png
+.env.example
+
